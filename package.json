@@ -1,0 +1,29 @@
+{
+  "name": "quickbite",
+  "version": "1.0.0",
+  "description": "- quickbite is online food ordering n delivering app - Clone of Swiggy/Zomato",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranvir91/quickbite.git"
+  },
+  "author": "ranvir singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ranvir91/quickbite/issues"
+  },
+  "homepage": "https://github.com/ranvir91/quickbite#readme",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
+  }
+}
