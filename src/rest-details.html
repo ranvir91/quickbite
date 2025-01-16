@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Details - QuickBite</title>
+  <style>
+    /* Reuse previous styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, footer {
+      background-color: #ff6f00;
+      color: white;
+      text-align: center;
+      padding: 10px 20px;
+    }
+
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .restaurant-info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .menu-item {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      text-align: center;
+    }
+
+    .menu-item h3 {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .menu-item p {
+      margin: 10px 0;
+      color: #666;
+    }
+
+    .add-to-cart-btn {
+      padding: 10px 15px;
+      background-color: #ff6f00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #e55d00;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">QuickBite</div>
+  </header>
+  <main class="container">
+    <h1>Restaurant Details</h1>
+    <div class="restaurant-info">
+      <h2>Sushi World</h2>
+      <p>Cuisine: Japanese</p>
+      <p>Rating: ⭐⭐⭐⭐⭐</p>
+      <p>Description: Experience the best sushi in town, crafted with fresh ingredients.</p>
+    </div>
+    <div class="menu-container">
+      <div class="menu-item">
+        <h3>California Roll</h3>
+        <p>Price: $12</p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="menu-item">
+        <h3>Salmon Nigiri</h3>
+        <p>Price: $10</p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="menu-item">
+        <h3>Spicy Tuna Roll</h3>
+        <p>Price: $15</p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>© 2023 QuickBite</p>
+  </footer>
+</body>
+</html>
