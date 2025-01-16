@@ -10,15 +10,15 @@ class OurteamCard extends React.Component {
             name: "team card",
             count : 1
         };
-        console.log('child constructor');
+        // console.log('child constructor');
     }
 
     componentDidMount() {
-        console.log('child componentDid Mount');
+        // console.log('child componentDid Mount');
     }
 
     render() {
-        console.log('child render');
+        // console.log('child render');
         // console.log(this.props.name);        
         const {name, age, location} = this.props;
         const {count} = this.state;

@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
-import MenuItemCard from "./MenuItemCard";
-import useRestResult from "../utils/useRestResult";
+import MenuCategory from "./MenuCategory";
+import useRestaurantDetail from "../utils/useRestaurantDetail";
+import { useParams } from "react-router-dom";
 
 const RestaurantPage = () => {
-    const [restResult, setRestResult] = useState([]);
-    const [restMenus, setRestMenus] = useState([]);
-    const [restMenusRecom, setRestMenusRecom] = useState([]);
-    
 
-    const fetchRestaurant = useRestResult();
+    const { resId } = useParams();
+    const resInfo = useRestaurantDetail(resId); // restaurant detail result
+    const { name, avgRating, cuisines, areaName,locality } = resInfo.restResult;
+    const restMenus = resInfo.restMenus;
+    const restMenusRecom = [];
 
-    console.log(fetchRestaurant);
-    
-
-    useEffect(() => {
-        fetchRestaurant();
-    }, []);
+    console.log(restMenus);
     
     return (
         <>
@@ -23,23 +19,21 @@ const RestaurantPage = () => {
             <h1>Restaurant Details</h1>
             <hr/>
             <div className="restaurant-info">
-                {/* <h2>{name}</h2>
+                <h2>{name}</h2>
                 <p>Cuisine: {cuisines}</p>
                 <p>Rating: {avgRating} ⭐</p>
-                <p>Address: {areaName}, {locality}</p> */}
+                <p>Address: {areaName}, {locality}</p>
                 <hr/>
             </div>
 
             <div className="menu-container">
-                {/* <div className="restaurant-info">
-                <h2>Menu</h2>
-                </div> */}
+                <div className="restaurant-info">
+                </div>
 
-                {/* {console.log(restMenus.length)} */}
-                {(restMenusRecom?.length ===0) ? <h3>Loading Items...</h3> : null}
+                {(restMenus?.length ===0) ? <h3>Loading Items...</h3> : null}
 
-                {restMenusRecom?.map((item) => (
-                     <MenuItemCard key={item.card.info.id} menuitem={item} />
+                {restMenus?.map((item, key) => (
+                     <MenuCategory key={key} menucategory={item} />
                 ))}
             </div>
           </main>

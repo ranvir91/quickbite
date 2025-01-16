@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useOnlineStaus = () => {
-    const [ isOnline, setIsOnline ] = useState(false);
+    const [ isOnline, setIsOnline ] = useState(true);
     // return 
 
     useEffect(()=> {
@@ -15,7 +15,7 @@ const useOnlineStaus = () => {
 
     }, []);
 
-    return isOnline;
+    return isOnline; // boolean value
 }
 
 export default useOnlineStaus;

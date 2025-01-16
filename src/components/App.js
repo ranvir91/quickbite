@@ -9,11 +9,13 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Contact from "./Contact";
 import Errorpage from "./Errorpage";
 import RestaurantPage from "./RestaurantPage";
-// import { createBrowserRouter } from "react-router-dom";
+import Offlinepage from "./Offlinepage";
+import useOnlineStaus from "../utils/useOnlineStatus";
 
 
 const App = () => {
-    return (
+    const onlineStatus = useOnlineStaus();
+    return (!onlineStatus) ? <Offlinepage /> :(
         <>
         <Header />
         <Outlet />

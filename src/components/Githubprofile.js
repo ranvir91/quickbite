@@ -6,7 +6,7 @@ import { GITHUB_API_URL } from "../constants";
 class Githubprofile extends React.Component {
     constructor(props) {
         super(props);
-        console.log("github construc");
+        // console.log("github constructor");
         this.state = {
             username : props.username || "",
             name : "",
@@ -17,7 +17,7 @@ class Githubprofile extends React.Component {
 
     render() {
         const { name, username, bio, location1 } = this.state; // Correct destructuring
-        console.log("github render");
+        // console.log("github render");
         return (
             <div>
                 <h1>Github profile: {username}</h1>
@@ -28,7 +28,7 @@ class Githubprofile extends React.Component {
     }
 
     componentDidMount() {
-        console.log("github mount");
+        // console.log("github mount");
 
         const fetchGithubProfile = async() => {
             const response = await fetch(`${GITHUB_API_URL}${this.props.username}`);

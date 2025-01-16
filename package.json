@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ranvir91/quickbite#readme",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.28.1",
