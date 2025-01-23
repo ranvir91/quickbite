@@ -1,17 +1,21 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
 import Body from "./Body";
 import About from "./About";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Contact from "./Contact";
 import Errorpage from "./Errorpage";
 import RestaurantPage from "./RestaurantPage";
 import Offlinepage from "./Offlinepage";
 import useOnlineStaus from "../utils/useOnlineStatus";
+// import ShimmerRestCard from "./ShimmerRestCard";
+// import Grocery from "./Grocery";
 
+// lazy loading
+const Grocery = lazy(()=> import('./Grocery'));
 
 const App = () => {
     const onlineStatus = useOnlineStaus();
@@ -45,7 +49,11 @@ const appRouter = createBrowserRouter([
                 path: "/restaurant/:resId",
                 element: <RestaurantPage />
             },
-            
+            {
+                path: "/grocery",
+                element: <Suspense fallback={<h1>Loading...</h1>}><Grocery /></Suspense> 
+                // element: <Suspense fallback={<ShimmerRestCard />}><Grocery /></Suspense> 
+            },
         
         ],
         errorElement : <Errorpage />

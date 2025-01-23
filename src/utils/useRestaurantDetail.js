@@ -37,7 +37,6 @@ const useRestaurantDetail  = (resId) => {
         
         const restmenu = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
         // console.log(restmenu);
-
         const restmenuFiltered = restmenu.filter((item)=> {
             if(item?.card?.card?.itemCards) {
                 return item?.card?.card?.itemCards;
@@ -49,6 +48,9 @@ const useRestaurantDetail  = (resId) => {
         //         return item?.card?.card?.itemCards;
         //     }
         // });
+
+        console.log(restmenuFiltered);
+        
         const categorisedMenu = restmenuFiltered.map((item)=> {
             return {
                 title: item?.card?.card?.title,
@@ -57,21 +59,20 @@ const useRestaurantDetail  = (resId) => {
                         id: t.card.info.id,
                         name: t.card.info.name,
                         description: t.card.info.description,
-                        price: t.card.info.defaultPrice,
+                        finalPrice: t.card.info.finalPrice,
+                        price: t.card.info.price,
                         imageId: t.card.info.imageId,
                         isVeg: t.card.info.isVeg
                     }
                 })
             }
         });
-        // console.log(categorisedMenu);
-        
+        // console.log(categorisedMenu);        
         setRestResult(restdata);
         setRestMenus(categorisedMenu);
     }
 
     return {restResult, restMenus};
 }
-
 
 export default useRestaurantDetail;

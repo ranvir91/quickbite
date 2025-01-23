@@ -1,68 +1,60 @@
 import React, { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { labeledRestaurantCard } from "./RestaurantCard";
 import ShimmerRestCard from "./ShimmerRestCard";
-import { RESTAURANT_LIST_URL } from "../constants";
+import useRestaurantList from "../utils/useRestaurantsList"; // custom hook restaurants list
 
 const Body = () => {
   
-  const [restaurantsList, setRestaurantsList] = useState([]);
-  const [filteredrRestaurants, setFilteredrRestaurants] = useState([]);
-  
-  const [searchKeyword, setSearchKeyword] = useState("");
-  // restaurantsList.length = 0;
-  const filterTopRated = () => {
-    const filteredRestaurants = filteredrRestaurants.filter((rest) => rest.info.avgRating > 4.2 );
-    setFilteredrRestaurants(filteredRestaurants);
-  };
-  
-  const fetchRestaurants = async() =>{
-    const result = await fetch(RESTAURANT_LIST_URL);
-    const restaurants = await result.json();
-    const finalResult = restaurants?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    setRestaurantsList(finalResult);
-    setFilteredrRestaurants(finalResult);
-  }
+  const restResult = useRestaurantList();
+  const filteredRestaurants = restResult.filteredRestaurants;
+  const restaurantsList = restResult.restaurantsList;
+  const filterTopRated = restResult.filterTopRated;
+  const [searchKeyword, setSearchKeyword] = useState('');
+
+  const RestaurantCardPromoted = labeledRestaurantCard(RestaurantCard); // HOC
 
   const searchRestaurant = () => {
-    // if(!searchKeyword) return;
     const searchedResto = restaurantsList.filter((res)=> {
       return res?.info?.name?.toLowerCase().includes(searchKeyword.toLowerCase());
     });
-    setFilteredrRestaurants(searchedResto);
-  }
-  
-  useEffect(() => { fetchRestaurants() },
-    []
-  );
+    // setFilteredRestaurants(searchedResto);
+  };
 
   
     return (
       <main>
-        <h1 styled="text-align: center; margin-bottom: 20px;">Explore Restaurants 
-          <small> (Total : {filteredrRestaurants?.length})</small>
+        {/* <h1 class="text-3xl font-bold underline"> Hello world! </h1> */}
+        <h1 className="px-5 py-2 w-full bg-gray-100">Explore Restaurants 
+          <small> (Total : {filteredRestaurants?.length})</small>
         </h1>
 
-        <div className="top-search">
-          <div className="filter-btn">
-            <button onClick={filterTopRated}>Filter Top Rated</button>
+        <div className="flex">
+          <div className="">
+            <button className="m-2 p-2 px-4 float-right rounded-md bg-green-400 text-white flex" onClick={filterTopRated}>Filter Top Rated</button>
           </div>
 
-          <div className="search">
-            <input type="text" placeholder="Seach restaurant" value={searchKeyword} onChange={(e)=>setSearchKeyword(e.target.value)} /> 
-            <input type="button" onClick={searchRestaurant} value="Search" /> 
+          <div className="mx-5 text-center">
+            <input className="p-2 border-2" type="text" placeholder="Seach restaurant" value={searchKeyword} 
+            onChange={(e)=>setSearchKeyword(e.target.value)} /> 
+            <input className="m-2 p-2 px-4 rounded-md bg-green-400 text-white" type="button" onClick={searchRestaurant} value="Search" /> 
           </div>
         </div>
 
         <hr />
         <br/>
-        <div className="restaurant-container">
-          {(filteredrRestaurants?.length ===0) ?
+        <div className="flex flex-wrap">
+          {(filteredRestaurants?.length ===0) ?
             (
               <ShimmerRestCard />
             )
             :
-            filteredrRestaurants?.map((restaurant)=> {
-              return <RestaurantCard key={restaurant.info.id} restData={restaurant} />
+            filteredRestaurants?.map((restaurant, index)=> {
+              if(index==2) {
+                // console.log(index);                
+                return <RestaurantCardPromoted key={restaurant.info.id} restData={restaurant} />
+              } else {
+                return <RestaurantCard key={restaurant.info.id} restData={restaurant} />
+              }
             })
           }
         </div>
